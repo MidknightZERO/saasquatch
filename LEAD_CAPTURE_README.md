@@ -50,10 +50,13 @@ For each lead, we capture:
 
 The lead capture is handled by:
 - `netlify/functions/capture-lead.js` - Main function for capturing leads
-- Uses `@neondatabase/serverless` package for database connectivity
+- `netlify/functions/test-db.js` - Test function to verify database connection
+- Uses `@neondatabase/serverless` package for database connectivity (NOT `@netlify/neon`)
 - Handles duplicate emails (updates existing records)
 - Returns success/error responses
 - Includes CORS headers for frontend integration
+
+**Important:** The correct package is `@neondatabase/serverless`, not `@netlify/neon` which doesn't exist.
 
 ### 7. Frontend Integration
 

@@ -1,6 +1,7 @@
 // Netlify function to capture leads
 import { neon } from '@neondatabase/serverless';
 
+// Use pooled connection for better performance in serverless functions
 const sql = neon(process.env.NETLIFY_DATABASE_URL);
 
 export default async function handler(event, context) {

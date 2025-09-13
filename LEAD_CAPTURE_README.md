@@ -11,11 +11,19 @@ Your Neon database is already configured with Netlify. The connection details ar
 
 ### 2. Environment Variables
 
-Make sure your Netlify site has the following environment variable set:
+You have two database connection options available. Set **both** environment variables in your Netlify dashboard:
 
+**For Netlify Functions (recommended):**
 ```
-NETLIFY_DATABASE_URL=postgresql://neondb_owner:npg_7ZnWRoaIs9fw@ep-cool-silence-ae6pg94m.c-2.us-east-2.aws.neon.tech/neondb?channel_binding=require&sslmode=require
+NETLIFY_DATABASE_URL=postgresql://neondb_owner:npg_7ZnWRoaIs9fw@ep-cool-silence-ae6pg94m-pooler.c-2.us-east-2.aws.neon.tech/neondb?channel_binding=require&sslmode=require
 ```
+
+**For direct connections (if needed):**
+```
+NETLIFY_DATABASE_URL_UNPOOLED=postgresql://neondb_owner:npg_7ZnWRoaIs9fw@ep-cool-silence-ae6pg94m.c-2.us-east-2.aws.neon.tech/neondb?channel_binding=require&sslmode=require
+```
+
+**Important:** Use the **pooled** connection (`NETLIFY_DATABASE_URL`) for Netlify functions as it handles connection pooling automatically and is more efficient for serverless functions.
 
 ### 3. Database Schema
 

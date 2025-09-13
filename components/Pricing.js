@@ -1,9 +1,14 @@
 // Pricing Component
 function Pricing() {
     const [isYearly, setIsYearly] = React.useState(false);
+    const [showLeadForm, setShowLeadForm] = React.useState(null);
 
     const togglePricing = () => {
         setIsYearly(!isYearly);
+    };
+
+    const closeLeadForm = () => {
+        setShowLeadForm(null);
     };
 
     return React.createElement("section", {
@@ -133,6 +138,7 @@ function Pricing() {
                         className: "text-center"
                     }, [
                         React.createElement("button", {
+                            onClick: () => setShowLeadForm({ tier: 'business', pricing: isYearly ? 'yearly' : 'monthly' }),
                             className: "w-full bg-pink-500 hover:bg-pink-600 text-white py-3 px-6 rounded-lg font-semibold transition-colors duration-300",
                             children: "Get Started"
                         }),
@@ -211,6 +217,7 @@ function Pricing() {
                         className: "text-center"
                     }, [
                         React.createElement("button", {
+                            onClick: () => setShowLeadForm({ tier: 'ecommerce', pricing: isYearly ? 'yearly' : 'monthly' }),
                             className: "w-full bg-teal-500 hover:bg-teal-600 text-white py-3 px-6 rounded-lg font-semibold transition-colors duration-300",
                             children: "Get Started"
                         }),
@@ -285,6 +292,7 @@ function Pricing() {
                         className: "text-center"
                     }, [
                         React.createElement("button", {
+                            onClick: () => setShowLeadForm({ tier: 'custom', pricing: isYearly ? 'yearly' : 'monthly' }),
                             className: "w-full bg-purple-500 hover:bg-purple-600 text-white py-3 px-6 rounded-lg font-semibold transition-colors duration-300",
                             children: "Get Quote"
                         }),
@@ -307,6 +315,40 @@ function Pricing() {
                     className: "text-sm text-gray-500 italic",
                     children: "Note: Hosting costs included - content updates charged separately"
                 })
+            ])
+        ]),
+        
+        // Lead Capture Modal
+        showLeadForm && React.createElement("div", {
+            className: "fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4",
+            onClick: closeLeadForm
+        }, [
+            React.createElement("div", {
+                className: "bg-white rounded-xl max-w-md w-full max-h-[90vh] overflow-y-auto",
+                onClick: (e) => e.stopPropagation()
+            }, [
+                React.createElement("div", {
+                    className: "flex justify-between items-center p-6 border-b"
+                }, [
+                    React.createElement("h2", {
+                        className: "text-xl font-bold text-gray-800",
+                        children: `Get Started with ${showLeadForm.tier === 'business' ? 'Business Website' : showLeadForm.tier === 'ecommerce' ? 'E-Commerce Website' : 'Custom Software'}`
+                    }),
+                    React.createElement("button", {
+                        onClick: closeLeadForm,
+                        className: "text-gray-500 hover:text-gray-700 text-2xl",
+                        children: "×"
+                    })
+                ]),
+                React.createElement("div", {
+                    className: "p-6"
+                }, [
+                    React.createElement(LeadCaptureForm, {
+                        tier: showLeadForm.tier,
+                        pricingPreference: showLeadForm.pricing,
+                        source: 'pricing'
+                    })
+                ])
             ])
         ])
     ]);

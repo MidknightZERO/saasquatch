@@ -1,0 +1,20 @@
+{
+  "name": "saasquatch-lead-capture",
+  "version": "1.0.0",
+  "description": "Lead capture system for SaaSquatch website",
+  "main": "netlify/functions/capture-lead.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@netlify/neon": "^1.0.0"
+  },
+  "keywords": [
+    "netlify",
+    "neon",
+    "lead-capture",
+    "saasquatch"
+  ],
+  "author": "SaaSquatch",
+  "license": "MIT"
+}

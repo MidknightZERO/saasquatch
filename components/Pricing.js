@@ -343,7 +343,7 @@ function Pricing() {
                 React.createElement("div", {
                     className: "p-6"
                 }, [
-                    React.createElement(LeadCaptureForm, {
+                    React.createElement(window.LeadCaptureForm, {
                         tier: showLeadForm.tier,
                         pricingPreference: showLeadForm.pricing,
                         source: 'pricing'

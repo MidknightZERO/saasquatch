@@ -1,7 +1,7 @@
 // Netlify function to capture leads
-import { neon } from '@netlify/neon';
+import { neon } from '@neondatabase/serverless';
 
-const sql = neon(); // automatically uses env NETLIFY_DATABASE_URL
+const sql = neon(process.env.NETLIFY_DATABASE_URL);
 
 export default async function handler(event, context) {
     // Only allow POST requests
